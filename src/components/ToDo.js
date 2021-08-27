@@ -1,13 +1,19 @@
 const ToDo = ({ toDo, setToDos }) => {
   const handleChange = (e) => {
-    const isDone = e.target.checked;
-    setToDos((prev) =>
-      prev.map((t) => (t.id === toDo.id ? { ...t, isDone } : t))
-    );
+    const updatedToDo = { ...toDo, isDone: e.target.checked };
+    setToDos((prev) => prev.map((t) => (t.id === toDo.id ? updatedToDo : t)));
   };
 
   const style = {
-    textDecoration: "strikeThrough",
+    color: "red",
+  };
+
+  const toggleImportance = (e) => {
+    setToDos((prev) =>
+      prev.map((t) =>
+        t.id === toDo.id ? { ...t, isImportant: !toDo.isImportant } : t
+      )
+    );
   };
 
   return (
@@ -15,7 +21,9 @@ const ToDo = ({ toDo, setToDos }) => {
       <input type='checkbox' name='done' onChange={handleChange} />
       <span style={toDo.isDone ? style : null}> {toDo.toDo} </span>
 
-      <button>{toDo.isImportant ? "important" : "not important"} </button>
+      <button onClick={toggleImportance}>
+        {toDo.isImportant ? "important" : "not important"}{" "}
+      </button>
     </li>
   );
 };

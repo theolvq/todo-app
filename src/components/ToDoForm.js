@@ -14,10 +14,9 @@ const ToDoForm = ({ toDos, setToDos }) => {
   };
 
   const handleSubmit = (e) => {
-    const id = toDos.length;
-    const isDone = false;
+    const id = toDos.length + 1;
     e.preventDefault();
-    setToDos((prev) => [...prev, { id, toDo, isImportant, isDone }]);
+    setToDos((prev) => [...prev, { id, toDo, isImportant, isDone: false }]);
     setToDo("");
   };
 
