@@ -5,7 +5,8 @@ const ToDo = ({ toDo, setToDos }) => {
   };
 
   const style = {
-    color: "red",
+    color: "gray",
+    textDecoration: "line-through",
   };
 
   const toggleImportance = (e) => {
