@@ -1,3 +1,8 @@
+import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
+import ListItem from '@material-ui/core/ListItem';
+import Typography from '@material-ui/core/Typography';
+
 const ToDo = ({ toDo, setToDos }) => {
   const handleChange = (e) => {
     const updatedToDo = { ...toDo, isDone: e.target.checked };
@@ -18,14 +23,15 @@ const ToDo = ({ toDo, setToDos }) => {
   };
 
   return (
-    <li>
-      <input type='checkbox' name='done' onChange={handleChange} />
-      <span style={toDo.isDone ? style : null}> {toDo.toDo} </span>
+    <ListItem>
+      <Checkbox name='done' onChange={handleChange} />
 
-      <button onClick={toggleImportance}>
+      <Typography style={toDo.isDone ? style : null}> {toDo.toDo} </Typography>
+
+      <Button onClick={toggleImportance}>
         {toDo.isImportant ? 'important' : 'not important'}{' '}
-      </button>
-    </li>
+      </Button>
+    </ListItem>
   );
 };
 

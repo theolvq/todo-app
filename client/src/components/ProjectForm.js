@@ -1,8 +1,14 @@
+import Button from '@material-ui/core/Button';
+import FormGroup from '@material-ui/core/FormGroup';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import { useState } from 'react';
+import { getTodaysDate } from '../utils/helper';
 
 const ProjectForm = ({ projects, setProjects }) => {
+  const today = getTodaysDate();
   const [projectName, setProjectName] = useState('');
-  const [deadline, setDeadline] = useState('');
+  const [deadline, setDeadline] = useState(today);
 
   const handleChange = ({ target }) => {
     if (target.name === 'projectName') {
@@ -21,26 +27,33 @@ const ProjectForm = ({ projects, setProjects }) => {
       { id, name: projectName, deadline, toDos: [] },
     ]);
     setProjectName('');
-    setDeadline('');
+    setDeadline(today);
   };
 
   return (
     <div>
-      <h2>Create a new project</h2>
+      <Typography variant='h2'>Create a new project</Typography>
       <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          name='projectName'
-          value={projectName}
-          onChange={handleChange}
-        />
-        <input
-          type='date'
-          name='deadline'
-          value={deadline}
-          onChange={handleChange}
-        />
-        <button type='submit'>Add Project</button>
+        <FormGroup row>
+          <TextField
+            type='text'
+            name='projectName'
+            value={projectName}
+            onChange={handleChange}
+            label='Project title'
+          />
+          <TextField
+            type='date'
+            name='deadline'
+            value={deadline}
+            onChange={handleChange}
+            label='Deadline'
+            InputLabelProps={{ shrink: true }}
+          />
+          <Button variant='contained' type='submit'>
+            Add Project
+          </Button>
+        </FormGroup>
       </form>
     </div>
   );

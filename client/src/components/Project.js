@@ -1,13 +1,17 @@
-import { useState } from "react";
-import ToDo from "./ToDo";
-import ToDoForm from "./ToDoForm";
+import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import { useState } from 'react';
+import ToDo from './ToDo';
+import ToDoForm from './ToDoForm';
 
 const Project = ({ project, projects, setProjects }) => {
   const [toDos, setToDos] = useState([]);
 
   return (
     <div>
-      {project.name} due on: {project.deadline}
+      <Typography variant='subtitle1'>
+        {project.name} due on: {project.deadline}
+      </Typography>
       <ToDoForm
         toDos={toDos}
         setToDos={setToDos}
@@ -15,7 +19,7 @@ const Project = ({ project, projects, setProjects }) => {
         projects={projects}
         setProjects={setProjects}
       />
-      <ul>
+      <List>
         {project.toDos
           .sort((item) => (item.isDone ? 1 : -1))
           .map((toDo) => (
@@ -26,7 +30,7 @@ const Project = ({ project, projects, setProjects }) => {
               setToDos={setToDos}
             />
           ))}
-      </ul>
+      </List>
     </div>
   );
 };

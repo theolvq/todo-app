@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import Project from './components/Project';
 import ProjectForm from './components/ProjectForm';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
 function App() {
   const [projects, setProjects] = useState([]);
 
   return (
-    <div>
-      <h1>Just do it!</h1>
+    <Container>
+      <Typography variant='h1'>Just do it!</Typography>
       <ProjectForm projects={projects} setProjects={setProjects} />
       {projects.map((project) => (
         <Project
@@ -17,7 +19,7 @@ function App() {
           setProjects={setProjects}
         />
       ))}
-    </div>
+    </Container>
   );
 }
 
