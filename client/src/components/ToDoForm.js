@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const ToDoForm = ({ toDos, setToDos }) => {
+const ToDoForm = ({ setProjects, projectId, toDos, setToDos }) => {
   const [toDo, setToDo] = useState("");
   const [isImportant, setIsImportant] = useState(false);
 
@@ -19,6 +19,14 @@ const ToDoForm = ({ toDos, setToDos }) => {
     setToDos((prev) => [...prev, { id, toDo, isImportant, isDone: false }]);
     setToDo("");
   };
+
+  useEffect(() => {
+    setProjects((prev) =>
+      prev.map((project) =>
+        project.id === projectId ? { ...project, toDos } : project
+      )
+    );
+  }, [toDos, projectId, setProjects]);
 
   return (
     <form onSubmit={handleSubmit}>

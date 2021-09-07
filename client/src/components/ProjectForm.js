@@ -14,8 +14,12 @@ const ProjectForm = ({ projects, setProjects }) => {
   };
 
   const handleSubmit = (e) => {
+    const id = projects.length + 1;
     e.preventDefault();
-    setProjects((prev) => [...prev, { name: projectName, deadline }]);
+    setProjects((prev) => [
+      ...prev,
+      { id, name: projectName, deadline, toDos: [] },
+    ]);
     setProjectName("");
     setDeadline("");
   };
@@ -36,6 +40,7 @@ const ProjectForm = ({ projects, setProjects }) => {
           value={deadline}
           onChange={handleChange}
         />
+        <button>Add Project</button>
       </form>
     </div>
   );
