@@ -5,8 +5,8 @@ const ToDo = ({ toDo, setToDos }) => {
   };
 
   const style = {
-    color: "gray",
-    textDecoration: "line-through",
+    color: 'gray',
+    textDecoration: 'line-through',
   };
 
   const toggleImportance = (e) => {
@@ -23,7 +23,7 @@ const ToDo = ({ toDo, setToDos }) => {
       <span style={toDo.isDone ? style : null}> {toDo.toDo} </span>
 
       <button onClick={toggleImportance}>
-        {toDo.isImportant ? "important" : "not important"}{" "}
+        {toDo.isImportant ? 'important' : 'not important'}{' '}
       </button>
     </li>
   );

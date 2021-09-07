@@ -1,6 +1,6 @@
-import { useState } from "react";
-import Project from "./components/Project";
-import ProjectForm from "./components/ProjectForm";
+import { useState } from 'react';
+import Project from './components/Project';
+import ProjectForm from './components/ProjectForm';
 
 function App() {
   const [projects, setProjects] = useState([]);

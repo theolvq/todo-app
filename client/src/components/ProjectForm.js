@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const ProjectForm = ({ projects, setProjects }) => {
-  const [projectName, setProjectName] = useState("");
-  const [deadline, setDeadline] = useState("");
+  const [projectName, setProjectName] = useState('');
+  const [deadline, setDeadline] = useState('');
 
   const handleChange = ({ target }) => {
-    if (target.name === "projectName") {
+    if (target.name === 'projectName') {
       setProjectName(target.value);
     }
-    if (target.name === "deadline") {
+    if (target.name === 'deadline') {
       setDeadline(target.value);
     }
   };
@@ -20,8 +20,8 @@ const ProjectForm = ({ projects, setProjects }) => {
       ...prev,
       { id, name: projectName, deadline, toDos: [] },
     ]);
-    setProjectName("");
-    setDeadline("");
+    setProjectName('');
+    setDeadline('');
   };
 
   return (
@@ -40,7 +40,7 @@ const ProjectForm = ({ projects, setProjects }) => {
           value={deadline}
           onChange={handleChange}
         />
-        <button>Add Project</button>
+        <button type='submit'>Add Project</button>
       </form>
     </div>
   );
