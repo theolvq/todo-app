@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import Project from './components/Project';
 import ProjectForm from './components/ProjectForm';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import projectService from './services/project';
 
 function App() {
   const [projects, setProjects] = useState([]);
 
   const fetchProjects = async () => {
     try {
-      const { data } = await axios.get('/api/projects');
+      const data = await projectService.getAll();
       setProjects(data);
     } catch (err) {
       console.error(err);
