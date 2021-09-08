@@ -9,6 +9,17 @@
     "ecmaVersion": 12
   },
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "never",
+        "exports": "never",
+
+        "functions": "never"
+      }
+    ]
   }
 }

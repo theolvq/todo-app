@@ -138,4 +138,4 @@ const projects = [
   },
 ];
 
-export default projects;
+module.exports = projects;
