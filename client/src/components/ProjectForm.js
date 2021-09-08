@@ -24,7 +24,7 @@ const ProjectForm = ({ projects, setProjects }) => {
     e.preventDefault();
     setProjects((prev) => [
       ...prev,
-      { id, name: projectName, deadline, toDos: [] },
+      { id, name: projectName, deadline, todos: [] },
     ]);
     setProjectName('');
     setDeadline(today);

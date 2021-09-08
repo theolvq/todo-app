@@ -3,30 +3,30 @@ import FormGroup from '@material-ui/core/FormGroup';
 import TextField from '@material-ui/core/TextField';
 import { useEffect, useState } from 'react';
 
-const ToDoForm = ({ setProjects, projectId, toDos, setToDos }) => {
-  const [toDo, setToDo] = useState('');
+const TodoForm = ({ setProjects, projectId, todos, setTodos }) => {
+  const [todo, setTodo] = useState('');
 
   const handleChange = ({ target }) => {
     if (target.name === 'todo') {
-      setToDo(target.value);
+      setTodo(target.value);
     }
   };
 
   const handleSubmit = (e) => {
     console.log('submitting');
-    const id = toDos.length + 1;
+    const id = todos.length + 1;
     e.preventDefault();
-    setToDos((prev) => [...prev, { id, toDo, isDone: false }]);
-    setToDo('');
+    setTodos((prev) => [...prev, { id, todo, isDone: false }]);
+    setTodo('');
   };
 
   useEffect(() => {
     setProjects((prev) =>
       prev.map((project) =>
-        project.id === projectId ? { ...project, toDos } : project
+        project.id === projectId ? { ...project, todos } : project
       )
     );
-  }, [toDos, projectId, setProjects]);
+  }, [todos, projectId, setProjects]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -35,7 +35,7 @@ const ToDoForm = ({ setProjects, projectId, toDos, setToDos }) => {
           label='Add a task'
           type='text'
           name='todo'
-          value={toDo}
+          value={todo}
           onChange={handleChange}
         />
         <Button type='submit'>+</Button>
@@ -44,4 +44,4 @@ const ToDoForm = ({ setProjects, projectId, toDos, setToDos }) => {
   );
 };
 
-export default ToDoForm;
+export default TodoForm;
