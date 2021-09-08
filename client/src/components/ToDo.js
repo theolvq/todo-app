@@ -1,4 +1,3 @@
-import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
@@ -14,23 +13,10 @@ const ToDo = ({ toDo, setToDos }) => {
     textDecoration: 'line-through',
   };
 
-  const toggleImportance = (e) => {
-    setToDos((prev) =>
-      prev.map((t) =>
-        t.id === toDo.id ? { ...t, isImportant: !toDo.isImportant } : t
-      )
-    );
-  };
-
   return (
     <ListItem>
       <Checkbox name='done' onChange={handleChange} />
-
       <Typography style={toDo.isDone ? style : null}> {toDo.toDo} </Typography>
-
-      <Button onClick={toggleImportance}>
-        {toDo.isImportant ? 'important' : 'not important'}{' '}
-      </Button>
     </ListItem>
   );
 };
