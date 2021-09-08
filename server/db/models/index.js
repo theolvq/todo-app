@@ -3,8 +3,8 @@ const Todo = require('./todo');
 
 // associations
 
-Project.hasMany(Todo);
 Todo.belongsTo(Project);
+Project.hasMany(Todo);
 
 module.exports = {
   Project,

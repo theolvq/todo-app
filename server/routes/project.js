@@ -1,15 +1,45 @@
 const router = require('express').Router();
-const { Project } = require('../db/models');
-const projects = require('./dummydata');
+const { Project, Todo } = require('../db/models');
 
-router.get('/', (req, res) => {
-  res.send(projects);
+router.get('/', async (req, res) => {
+  try {
+    const projects = await Project.findAll({
+      attributes: ['id', 'name', 'deadline'],
+      include: [
+        {
+          model: Todo,
+          attributes: ['id', 'todo', 'isDone', 'projectId'],
+        },
+      ],
+    });
+    res.json(projects);
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 router.post('/', async (req, res) => {
-  const { name, deadline } = req.body;
-  const project = Project.create({ name, deadline });
-  return res.json({ project });
+  try {
+    const { name, deadline } = req.body;
+    const project = Project.create({ name, deadline });
+    res.status(201).json(project);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Project.destroy({
+      where: {
+        id,
+      },
+    });
+    res.status(204).end();
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 module.exports = router;
