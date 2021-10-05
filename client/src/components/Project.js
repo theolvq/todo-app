@@ -20,16 +20,17 @@ const Project = ({ project, projects, setProjects }) => {
         setProjects={setProjects}
       />
       <List>
-        {project.todos
-          .sort((item) => (item.isDone ? 1 : -1))
-          .map((todo) => (
-            <Todo
-              key={todo.id}
-              project={project}
-              todo={todo}
-              setTodos={setTodos}
-            />
-          ))}
+        {project.todos &&
+          project.todos
+            .sort((item) => (item.isDone ? 1 : -1))
+            .map((todo) => (
+              <Todo
+                key={todo.id}
+                project={project}
+                todo={todo}
+                setTodos={setTodos}
+              />
+            ))}
       </List>
     </div>
   );

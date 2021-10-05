@@ -8,16 +8,17 @@ import projectService from './services/project';
 function App() {
   const [projects, setProjects] = useState([]);
 
-  const fetchProjects = async () => {
-    try {
-      const data = await projectService.getAll();
-      setProjects(data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const data = await projectService.getAll();
+        console.log('data', data);
+        setProjects(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
     fetchProjects();
   }, []);
 

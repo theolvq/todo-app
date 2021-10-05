@@ -3,6 +3,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { useState } from 'react';
+import projectService from '../services/project';
 import { getTodaysDate } from '../utils/helper';
 
 const ProjectForm = ({ projects, setProjects }) => {
@@ -19,13 +20,24 @@ const ProjectForm = ({ projects, setProjects }) => {
     }
   };
 
+  const createProject = async (newProject) => {
+    try {
+      await projectService.create(newProject);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const handleSubmit = (e) => {
-    const id = projects.length + 1;
     e.preventDefault();
-    setProjects((prev) => [
-      ...prev,
-      { id, name: projectName, deadline, todos: [] },
-    ]);
+    const newProject = {
+      name: projectName,
+      deadline,
+    };
+    createProject(newProject).then((res) => {
+      console.log('res', res);
+    });
+    setProjects((prev) => [...prev, newProject]);
     setProjectName('');
     setDeadline(today);
   };

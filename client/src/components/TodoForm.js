@@ -21,12 +21,8 @@ const TodoForm = ({ setProjects, projectId, todos, setTodos }) => {
   };
 
   useEffect(() => {
-    setProjects((prev) =>
-      prev.map((project) =>
-        project.id === projectId ? { ...project, todos } : project
-      )
-    );
-  }, [todos, projectId, setProjects]);
+    console.log('use effect');
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>
